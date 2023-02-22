@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 public class NotificationsViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
-
+    // check sss
     public NotificationsViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is notifications fragment");
