@@ -3,4 +3,15 @@
     <string name="title_main">Рацион</string>
     <string name="title_products">Продукты</string>
     <string name="title_settings">Настройки</string>
+    <string name="a">Ваша цель</string>
+    <string name="b">Пол</string>
+    <string name="с">Возраст</string>
+    <string name="d">Рост</string>
+    <string name="e">Вес</string>
+    <string name="f">Продукты, которые Вы хотите исключить из рациона</string>
+    <string name="first_answer">Сброс веса</string>
+    <string name="second_answer">Поддержка веса</string>
+    <string name="third_answer">Набор веса</string>
+    <string name="hint_height">см</string>
+    <string name="hint_weight">кг</string>
 </resources>
