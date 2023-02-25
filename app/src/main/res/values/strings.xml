@@ -4,10 +4,10 @@
     <string name="title_products">Продукты</string>
     <string name="title_settings">Настройки</string>
     <string name="a">Ваша цель</string>
-    <string name="b">Пол</string>
-    <string name="с">Возраст</string>
-    <string name="d">Рост</string>
-    <string name="e">Вес</string>
+    <string name="b">Ваш Пол</string>
+    <string name="с">Ваш Возраст</string>
+    <string name="d">Ваш Рост</string>
+    <string name="e">Ваш Вес</string>
     <string name="f">Продукты, которые Вы хотите исключить из рациона</string>
     <string name="first_answer">Сброс веса</string>
     <string name="second_answer">Поддержка веса</string>

@@ -9,6 +9,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.test.ui.JSONHelper;
+import com.example.test.ui.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,22 +37,25 @@ public class MainActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private EditText inputText;
     private TextView hintText;
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.questions);
-
+        user = JSONHelper.importFromJSON(this);
+        if(user == null){
+            setContentView(R.layout.questions);
             first_answerButton = findViewById(R.id.first_button);
-            first_answerButton.setOnClickListener(radioButtonClickListener);
+            //first_answerButton.setOnClickListener(radioButtonClickListener);
             second_answerButton = findViewById(R.id.second_button);
-            second_answerButton.setOnClickListener(radioButtonClickListener);
+            //second_answerButton.setOnClickListener(radioButtonClickListener);
             third_answerButton = findViewById(R.id.third_button);
-            third_answerButton.setOnClickListener(radioButtonClickListener);
+            //third_answerButton.setOnClickListener(radioButtonClickListener);
             nextButton = findViewById(R.id.next_button);
             questionTextView = findViewById(R.id.answer_text_view);
             radioGroup = findViewById(R.id.radioGroup);
             inputText = findViewById(R.id.input_text);
             hintText = findViewById(R.id.hint_text);
+            user = new User("","Мужской",0,0,0,new String[]{"a","b"});
             nextButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -61,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
                             case 1: // меняем на вопрос о поле
                             {
                                 questionTextView.setText(R.string.b);
+                                if(first_answerButton.isChecked()) user.setTarget("Сброс веса");
+                                else if(second_answerButton.isChecked()) user.setTarget("Поддержка веса");
+                                else user.setTarget("Набор веса");
                                 radioGroup.clearCheck();
                                 first_answerButton.setText("Мужской");
                                 second_answerButton.setText("Женский");
@@ -70,17 +78,41 @@ public class MainActivity extends AppCompatActivity {
                             case 2: // меняем на вопрос о возрасте
                             {
                                 questionTextView.setText(R.string.с);
+                                if(first_answerButton.isChecked()) user.setMale("Мужской");
+                                else user.setMale("Женский");
                                 radioGroup.setVisibility(View.INVISIBLE);
                                 inputText.setVisibility(View.VISIBLE);
+                               /* inputText.addTextChangedListener(new TextWatcher() {
+                                    @Override
+                                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                                    }
+
+                                    @Override
+                                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                                    }
+
+                                    @Override
+                                    public void afterTextChanged(Editable editable) {
+
+                                    }
+                                });*/
                                 break;
                             }
                             case 3: // меняем на вопрос о росте
                             {
-                                if(inputText.getText().length() == 0){ // нужна более лучшая валидация
-                                    Toast.makeText(getApplicationContext(), "ошибка", Toast.LENGTH_SHORT).show();
+                                if(inputText.getText().length() == 0){ // Тосты можно поменять на другие варианты информирования
+                                    Toast.makeText(getApplicationContext(), "Поле необходимо заполнить", Toast.LENGTH_LONG).show();
+                                    num_of_question--;
+                                }
+                                else if(Integer.parseInt(String.valueOf(inputText.getText())) <= 6 ||
+                                        Integer.parseInt(String.valueOf(inputText.getText())) >= 91){
+                                    Toast.makeText(getApplicationContext(), "Возраст может быть от 7 до 90 лет включительно", Toast.LENGTH_LONG).show();
                                     num_of_question--;
                                 }
                                 else{
+                                    user.setAge(Integer.parseInt(String.valueOf(inputText.getText())));
                                     questionTextView.setText(R.string.d);
                                     inputText.setText("");
                                     hintText.setText(R.string.hint_height);
@@ -89,11 +121,17 @@ public class MainActivity extends AppCompatActivity {
                             }
                             case 4: // меняем на вопрос о весе
                             {
-                                if(inputText.getText().length() == 0){ // нужна более лучшая валидация
-                                    Toast.makeText(getApplicationContext(), "ошибка", Toast.LENGTH_SHORT).show();
+                                if(inputText.getText().length() == 0){
+                                    Toast.makeText(getApplicationContext(), "Поле необходимо заполнить", Toast.LENGTH_LONG).show();
+                                    num_of_question--;
+                                }
+                                else if(Float.parseFloat(String.valueOf(inputText.getText())) < 110 ||
+                                        Float.parseFloat(String.valueOf(inputText.getText())) > 230){
+                                    Toast.makeText(getApplicationContext(), "Укажите рост от 110 до 230 см", Toast.LENGTH_LONG).show();
                                     num_of_question--;
                                 }
                                 else{
+                                    user.setHeight(Float.parseFloat(String.valueOf(inputText.getText())));
                                     questionTextView.setText(R.string.e);
                                     inputText.setText("");
                                     hintText.setText(R.string.hint_weight);
@@ -103,15 +141,27 @@ public class MainActivity extends AppCompatActivity {
                             case 5: // меняем на вопросы об аллергии, тут надо подумать как реализовать, поэтому пока что просто запускаем основной экран
                             {
                                 if(inputText.getText().length() == 0){ // нужна более лучшая валидация
-                                    Toast.makeText(getApplicationContext(), "ошибка", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Поле необходимо заполнить", Toast.LENGTH_LONG).show();
+                                    num_of_question--;
+                                }
+                                else if(Float.parseFloat(String.valueOf(inputText.getText())) < 20 ||
+                                        Float.parseFloat(String.valueOf(inputText.getText())) > 200){
+                                    Toast.makeText(getApplicationContext(), "Укажите вес от 20 до 200 кг", Toast.LENGTH_LONG).show();
                                     num_of_question--;
                                 }
                                 else {
-                                    /*questionTextView.setText(R.string.f);
-                                    radioGroup.setOrientation(LinearLayout.HORIZONTAL);*/
+                                    user.setWeight(Float.parseFloat(String.valueOf(inputText.getText())));
+                                    boolean result = JSONHelper.exportToJSON(getApplicationContext(), user);
+                                    if(result){
+                                        Toast.makeText(getApplicationContext(), "Данные сохранены", Toast.LENGTH_LONG).show();
+                                    }
+                                    else{
+                                        Toast.makeText(getApplicationContext(), "Не удалось сохранить данные", Toast.LENGTH_LONG).show();
+                                    }
+                                /*questionTextView.setText(R.string.f);
+                                radioGroup.setOrientation(LinearLayout.HORIZONTAL);*/
                                     StartApp();
                                 }
-
                                 break;
                             }
                             case 6: // меняем на основной экран
@@ -119,12 +169,14 @@ public class MainActivity extends AppCompatActivity {
                                 StartApp();
                             }
                         }
-                       num_of_question++;
+                        num_of_question++;
                     }
                 }
             });
+        }
+        else StartApp();
+        }
 
-    }
     protected void StartApp(){
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -139,22 +191,5 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
-    View.OnClickListener radioButtonClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            RadioButton rb = (RadioButton)v;
-            switch (rb.getId()) {
-                case R.id.first_button: Toast.makeText(getApplicationContext(),"1",Toast.LENGTH_SHORT).show(); // надо будет заменить на запоминание результатов
-                    break;
-                case R.id.second_button: Toast.makeText(getApplicationContext(),"2",Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.third_button: Toast.makeText(getApplicationContext(),"3",Toast.LENGTH_SHORT).show();
-                    break;
-
-                default:
-                    break;
-            }
-        }
-    };
 
 }
