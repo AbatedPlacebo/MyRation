@@ -1,14 +1,14 @@
 package com.example.test.ui;
 
 public class User {
-    private String target;
-    private String male;
+    private int target; // 0 - сброс, 1 - поддержка, 2 - набор
+    private int male; // 0 - м, 1 - ж
     private int age;
     private float height;
     private float weight;
     private String exceps[];
 
-    public User(String target, String male, int age, float height, float weight, String[] exceps) {
+    public User(int target, int male, int age, float height, float weight, String[] exceps) {
         this.target = target;
         this.male = male;
         this.age = age;
@@ -17,19 +17,19 @@ public class User {
         this.exceps = exceps;
     }
 
-    public String getTarget() {
+    public int getTarget() {
         return target;
     }
 
-    public void setTarget(String target) {
+    public void setTarget(int target) {
         this.target = target;
     }
 
-    public String getMale() {
+    public int getMale() {
         return male;
     }
 
-    public void setMale(String male) {
+    public void setMale(int male) {
         this.male = male;
     }
 

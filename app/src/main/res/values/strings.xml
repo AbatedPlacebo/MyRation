@@ -14,4 +14,13 @@
     <string name="third_answer">Набор веса</string>
     <string name="hint_height">см</string>
     <string name="hint_weight">кг</string>
+    <string-array name="target_array">
+        <item>Сброс веса</item>
+        <item>Поддержка веса</item>
+        <item>Набор веса</item>
+    </string-array>
+    <string-array name="male_array">
+        <item>Мужской</item>
+        <item>Женский</item>
+    </string-array>
 </resources>

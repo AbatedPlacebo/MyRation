@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             radioGroup = findViewById(R.id.radioGroup);
             inputText = findViewById(R.id.input_text);
             hintText = findViewById(R.id.hint_text);
-            user = new User("","Мужской",0,0,0,new String[]{"a","b"});
+            user = new User(0,0,0,0,0,new String[]{"a","b"});
             nextButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -66,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
                             case 1: // меняем на вопрос о поле
                             {
                                 questionTextView.setText(R.string.b);
-                                if(first_answerButton.isChecked()) user.setTarget("Сброс веса");
-                                else if(second_answerButton.isChecked()) user.setTarget("Поддержка веса");
-                                else user.setTarget("Набор веса");
+                                if(first_answerButton.isChecked()) user.setTarget(0);
+                                else if(second_answerButton.isChecked()) user.setTarget(1);
+                                else user.setTarget(2);
                                 radioGroup.clearCheck();
                                 first_answerButton.setText("Мужской");
                                 second_answerButton.setText("Женский");
@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
                             case 2: // меняем на вопрос о возрасте
                             {
                                 questionTextView.setText(R.string.с);
-                                if(first_answerButton.isChecked()) user.setMale("Мужской");
-                                else user.setMale("Женский");
+                                if(first_answerButton.isChecked()) user.setMale(0);
+                                else user.setMale(1);
                                 radioGroup.setVisibility(View.INVISIBLE);
                                 inputText.setVisibility(View.VISIBLE);
                                /* inputText.addTextChangedListener(new TextWatcher() {
