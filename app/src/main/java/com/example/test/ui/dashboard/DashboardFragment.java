@@ -5,15 +5,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.test.R;
 import com.example.test.databinding.FragmentDashboardBinding;
+import com.example.test.db.Catalog;
+import com.example.test.db.DatabaseLoad;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +33,10 @@ public class DashboardFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         ListView listView = root.findViewById(R.id.listview);
-        List<String> list = new ArrayList<>();
-        for(int i=0;i<100;i++)
-            list.add("Item "+i);
-        CustomAdapter listAdapter = new CustomAdapter(list);
+        List<Catalog> list = new ArrayList<>();
+        DatabaseLoad db = new DatabaseLoad();
+        db.populate(getContext());
+        CustomAdapter listAdapter = new CustomAdapter(db.getProducts());
         listView.setAdapter(listAdapter);
         return root;
     }
@@ -43,9 +47,9 @@ public class DashboardFragment extends Fragment {
         binding = null;
     }
     class CustomAdapter extends BaseAdapter {
-        List<String> items;
+        List<Catalog> items;
 
-        public CustomAdapter(List<String> items) {
+        public CustomAdapter(List<Catalog> items) {
             super();
             this.items = items;
         }
@@ -67,8 +71,11 @@ public class DashboardFragment extends Fragment {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
+            String name = items.get(i).productName;
+            String URL = items.get(i).URL;
+
             TextView textView = new TextView(getContext());
-            textView.setText(items.get(i));
+            textView.setText(items.get(i).productName);
             return textView;
         }
     }

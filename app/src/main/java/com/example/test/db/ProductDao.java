@@ -9,18 +9,18 @@ import java.util.List;
 
 @Dao
 public interface ProductDao {
-    @Query("SELECT * FROM product")
-    List<Product> getAll();
+    @Query("SELECT * FROM catalog")
+    List<Catalog> getAll();
 
-    @Query("SELECT * FROM product WHERE id IN (:productIds)")
-    List<Product> loadAllByIds(int[] productIds);
+    @Query("SELECT * FROM catalog WHERE id IN (:productIds)")
+    List<Catalog> loadAllByIds(int[] productIds);
 
-    @Query("SELECT * FROM product WHERE name LIKE :name LIMIT 1")
-    Product findByName(String name);
+    @Query("SELECT * FROM catalog WHERE name LIKE :name LIMIT 1")
+    Catalog findByName(String name);
 
     @Insert
-    void insertAll(Product... products);
+    void insertAll(Catalog... catalogs);
 
     @Delete
-    void delete(Product product);
+    void delete(Catalog catalog);
 }

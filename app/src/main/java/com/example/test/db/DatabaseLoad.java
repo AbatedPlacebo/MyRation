@@ -3,17 +3,28 @@ package com.example.test.db;
 import android.content.Context;
 
 import androidx.room.Room;
-import androidx.room.RoomDatabase;
 
 import java.util.List;
 
 public class DatabaseLoad {
+    List<Categories> categories;
+    List<Catalog> products;
+
     public void populate(Context context){
         AppDatabase db = Room.databaseBuilder(context,
-                AppDatabase.class, "database-name")
-                .createFromAsset("res/database.db")
+                AppDatabase.class, "my_ratio")
+                .allowMainThreadQueries()
+                .createFromAsset("database/my_ratio.db")
                 .build();
         ProductDao productDao = db.productDao();
-        List<Product> users = productDao.getAll();
+        CategoryDao categoryDao = db.categoryDao();
+        categories = categoryDao.getAll();
+        products = productDao.getAll();
+    }
+    public List<Categories> getCategories(){
+        return categories;
+    }
+    public List<Catalog> getProducts(){
+        return products;
     }
 }
