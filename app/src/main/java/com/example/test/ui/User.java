@@ -6,15 +6,24 @@ public class User {
     private int age;
     private float height;
     private float weight;
+    private int activity; // 0 - минимальная, 1 - низкая, 2 - средняя, 3 - высокая, 4 - очень высокая
     private String exceps[];
 
-    public User(int target, int male, int age, float height, float weight, String[] exceps) {
+    public User(int target, int male, int age, float height, float weight, int activity, String[] exceps) {
         this.target = target;
         this.male = male;
         this.age = age;
         this.height = height;
         this.weight = weight;
         this.exceps = exceps;
+    }
+
+    public int getActivity() {
+        return activity;
+    }
+
+    public void setActivity(int activity) {
+        this.activity = activity;
     }
 
     public int getTarget() {

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Test</string>
+    <string name="question_header">Заполните форму для подсчёта оптимального рациона</string>
     <string name="title_main">Рацион</string>
     <string name="title_products">Продукты</string>
     <string name="title_settings">Настройки</string>
@@ -14,6 +15,7 @@
     <string name="third_answer">Набор веса</string>
     <string name="hint_height">см</string>
     <string name="hint_weight">кг</string>
+    <string name="required">Необходимое поле</string>
     <string-array name="target_array">
         <item>Сброс веса</item>
         <item>Поддержка веса</item>
@@ -22,5 +24,12 @@
     <string-array name="male_array">
         <item>Мужской</item>
         <item>Женский</item>
+    </string-array>
+    <string-array name="activity_array">
+        <item>Минимальная</item>
+        <item>Низкая</item>
+        <item>Средняя</item>
+        <item>Высокая</item>
+        <item>Максимальная</item>
     </string-array>
 </resources>

@@ -16,11 +16,15 @@
         <entry key="..\:/AndroidStudioProjecrs/Test/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjecrs/Test/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.196" />
         <entry key="..\:/AndroidStudioProjecrs/Test/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.196" />
+        <entry key="..\:/AndroidStudioProjecrs/Test2/app/src/main/res/drawable/dialog_bg.xml" value="0.196" />
+        <entry key="..\:/AndroidStudioProjecrs/Test2/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.256" />
+        <entry key="..\:/AndroidStudioProjecrs/Test2/app/src/main/res/drawable/ic_information_24dp.xml" value="0.256" />
         <entry key="..\:/AndroidStudioProjecrs/Test2/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/AndroidStudioProjecrs/Test2/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.18697916666666667" />
         <entry key="..\:/AndroidStudioProjecrs/Test2/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjecrs/Test2/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjecrs/Test2/app/src/main/res/layout/fragment_notifications.xml" value="0.36666666666666664" />
-        <entry key="..\:/AndroidStudioProjecrs/Test2/app/src/main/res/layout/questions.xml" value="0.18697916666666667" />
+        <entry key="..\:/AndroidStudioProjecrs/Test2/app/src/main/res/layout/questions.xml" value="0.33" />
       </map>
     </option>
   </component>

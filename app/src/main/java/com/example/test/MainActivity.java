@@ -1,11 +1,23 @@
 package com.example.test;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Html;
+import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,162 +32,170 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.test.databinding.ActivityMainBinding;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private boolean quiz = true;
-    private int num_of_question = 1;
-    private RadioButton first_answerButton;
-    private RadioButton second_answerButton;
-    private RadioButton third_answerButton;
-    //private RadioButton fourth_answerButton;
-    //private RadioButton fiveth_answerButton;
-    //private RadioButton sixth_answerButton;
-    private Button nextButton;
-    private TextView questionTextView;
-    private RadioGroup radioGroup;
-    private EditText inputText;
-    private TextView hintText;
+    private Spinner spinner_target;
+    private Spinner spinner_male;
+    private TextView very_low_text;
+    private TextView low_text;
+    private TextView middle_text;
+    private TextView high_text;
+    private TextView very_high_text;
+    private TextInputEditText text_age;
+    private TextInputLayout container_age;
+    private TextInputEditText text_height;
+    private TextInputLayout container_height;
+    private TextInputEditText text_weight;
+    private TextInputLayout container_weight;
+    // private EditText text_allergy;
+    private Spinner spinner_activity;
+    private Button button_next;
+    private ImageButton button_info_activity;
     private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        user = JSONHelper.importFromJSON(this);
+        user = JSONHelper.importFromJSON(this); // если уже есть инфа, то просто запускаем основу
         if(user == null){
             setContentView(R.layout.questions);
-            first_answerButton = findViewById(R.id.first_button);
-            //first_answerButton.setOnClickListener(radioButtonClickListener);
-            second_answerButton = findViewById(R.id.second_button);
-            //second_answerButton.setOnClickListener(radioButtonClickListener);
-            third_answerButton = findViewById(R.id.third_button);
-            //third_answerButton.setOnClickListener(radioButtonClickListener);
-            nextButton = findViewById(R.id.next_button);
-            questionTextView = findViewById(R.id.answer_text_view);
-            radioGroup = findViewById(R.id.radioGroup);
-            inputText = findViewById(R.id.input_text);
-            hintText = findViewById(R.id.hint_text);
-            user = new User(0,0,0,0,0,new String[]{"a","b"});
-            nextButton.setOnClickListener(new View.OnClickListener() {
+            spinner_target = findViewById(R.id.spinner_target);
+            ArrayAdapter<CharSequence> target_adapter = ArrayAdapter.createFromResource(this,
+                    R.array.target_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+            target_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+            spinner_target.setAdapter(target_adapter);
+
+            spinner_male = findViewById(R.id.spinner_male);
+            ArrayAdapter<CharSequence> male_adapter = ArrayAdapter.createFromResource(this,
+                    R.array.male_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+            male_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+            spinner_male.setAdapter(male_adapter);
+
+            text_age = findViewById(R.id.text_age);
+            container_age = findViewById(R.id.ageContainer);
+            text_age.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean b) {
+                    if(!b){
+                        if(text_age.getText().length() != 0) container_age.setHelperText(validAge());
+                    }
+                }
+            });
+
+            text_height = findViewById(R.id.text_height);
+            container_height = findViewById(R.id.heightContainer);
+            text_height.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean b) {
+                    if(!b){
+                        if(text_height.getText().length() != 0) container_height.setHelperText(validHeight());
+                    }
+                }
+            });
+
+            text_weight = findViewById(R.id.text_weight);
+            container_weight = findViewById(R.id.weightContainer);
+            text_weight.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean b) {
+                    if(!b){
+                        if(text_weight.getText().length() != 0) container_weight.setHelperText(validWeight());
+                    }
+                }
+            });
+
+            spinner_activity = findViewById(R.id.spinner_activity);
+            ArrayAdapter<CharSequence> activity_adapter = ArrayAdapter.createFromResource(this,
+                    R.array.activity_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+            activity_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+            spinner_activity.setAdapter(activity_adapter);
+
+            button_next = findViewById(R.id.button_next);
+
+            user = new User(0,0,0,0,0,0,new String[]{"a","b"});
+            button_next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(radioGroup.getCheckedRadioButtonId() == -1)
-                        Toast.makeText(getApplicationContext(), "ошибка", Toast.LENGTH_SHORT).show();
+                    if(!CheckEditTexts())
+                        Toast.makeText(getApplicationContext(), "Ошибки в заполняемых полях", Toast.LENGTH_LONG).show();
                     else {
-                        switch (num_of_question){
-                            case 1: // меняем на вопрос о поле
-                            {
-                                questionTextView.setText(R.string.b);
-                                if(first_answerButton.isChecked()) user.setTarget(0);
-                                else if(second_answerButton.isChecked()) user.setTarget(1);
-                                else user.setTarget(2);
-                                radioGroup.clearCheck();
-                                first_answerButton.setText("Мужской");
-                                second_answerButton.setText("Женский");
-                                third_answerButton.setVisibility(View.INVISIBLE);
-                                break;
-                            }
-                            case 2: // меняем на вопрос о возрасте
-                            {
-                                questionTextView.setText(R.string.с);
-                                if(first_answerButton.isChecked()) user.setMale(0);
-                                else user.setMale(1);
-                                radioGroup.setVisibility(View.INVISIBLE);
-                                inputText.setVisibility(View.VISIBLE);
-                               /* inputText.addTextChangedListener(new TextWatcher() {
-                                    @Override
-                                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                                    }
-
-                                    @Override
-                                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                                    }
-
-                                    @Override
-                                    public void afterTextChanged(Editable editable) {
-
-                                    }
-                                });*/
-                                break;
-                            }
-                            case 3: // меняем на вопрос о росте
-                            {
-                                if(inputText.getText().length() == 0){ // Тосты можно поменять на другие варианты информирования
-                                    Toast.makeText(getApplicationContext(), "Поле необходимо заполнить", Toast.LENGTH_LONG).show();
-                                    num_of_question--;
-                                }
-                                else if(Integer.parseInt(String.valueOf(inputText.getText())) <= 6 ||
-                                        Integer.parseInt(String.valueOf(inputText.getText())) >= 91){
-                                    Toast.makeText(getApplicationContext(), "Возраст может быть от 7 до 90 лет включительно", Toast.LENGTH_LONG).show();
-                                    num_of_question--;
-                                }
-                                else{
-                                    user.setAge(Integer.parseInt(String.valueOf(inputText.getText())));
-                                    questionTextView.setText(R.string.d);
-                                    inputText.setText("");
-                                    hintText.setText(R.string.hint_height);
-                                }
-                                break;
-                            }
-                            case 4: // меняем на вопрос о весе
-                            {
-                                if(inputText.getText().length() == 0){
-                                    Toast.makeText(getApplicationContext(), "Поле необходимо заполнить", Toast.LENGTH_LONG).show();
-                                    num_of_question--;
-                                }
-                                else if(Float.parseFloat(String.valueOf(inputText.getText())) < 110 ||
-                                        Float.parseFloat(String.valueOf(inputText.getText())) > 230){
-                                    Toast.makeText(getApplicationContext(), "Укажите рост от 110 до 230 см", Toast.LENGTH_LONG).show();
-                                    num_of_question--;
-                                }
-                                else{
-                                    user.setHeight(Float.parseFloat(String.valueOf(inputText.getText())));
-                                    questionTextView.setText(R.string.e);
-                                    inputText.setText("");
-                                    hintText.setText(R.string.hint_weight);
-                                }
-                                break;
-                            }
-                            case 5: // меняем на вопросы об аллергии, тут надо подумать как реализовать, поэтому пока что просто запускаем основной экран
-                            {
-                                if(inputText.getText().length() == 0){ // нужна более лучшая валидация
-                                    Toast.makeText(getApplicationContext(), "Поле необходимо заполнить", Toast.LENGTH_LONG).show();
-                                    num_of_question--;
-                                }
-                                else if(Float.parseFloat(String.valueOf(inputText.getText())) < 20 ||
-                                        Float.parseFloat(String.valueOf(inputText.getText())) > 200){
-                                    Toast.makeText(getApplicationContext(), "Укажите вес от 20 до 200 кг", Toast.LENGTH_LONG).show();
-                                    num_of_question--;
-                                }
-                                else {
-                                    user.setWeight(Float.parseFloat(String.valueOf(inputText.getText())));
-                                    boolean result = JSONHelper.exportToJSON(getApplicationContext(), user);
-                                    if(result){
-                                        Toast.makeText(getApplicationContext(), "Данные сохранены", Toast.LENGTH_LONG).show();
-                                    }
-                                    else{
-                                        Toast.makeText(getApplicationContext(), "Не удалось сохранить данные", Toast.LENGTH_LONG).show();
-                                    }
-                                /*questionTextView.setText(R.string.f);
-                                radioGroup.setOrientation(LinearLayout.HORIZONTAL);*/
-                                    StartApp();
-                                }
-                                break;
-                            }
-                            case 6: // меняем на основной экран
-                            {
-                                StartApp();
-                            }
+                        user.setTarget(spinner_target.getSelectedItemPosition());
+                        user.setMale(spinner_male.getSelectedItemPosition());
+                        user.setAge(Integer.parseInt(String.valueOf(text_age.getText())));
+                        user.setHeight(Float.parseFloat(String.valueOf(text_height.getText())));
+                        user.setWeight(Float.parseFloat(String.valueOf(text_weight.getText())));
+                        user.setActivity(spinner_activity.getSelectedItemPosition());
+                        boolean result = JSONHelper.exportToJSON(getApplicationContext(), user); // сохраняем введённые данные в JSON-файл
+                        if(result){
+                            Toast.makeText(getApplicationContext(), "Данные сохранены", Toast.LENGTH_LONG).show();
+                            StartApp();
                         }
-                        num_of_question++;
+                        else{
+                            Toast.makeText(getApplicationContext(), "Не удалось сохранить данные", Toast.LENGTH_LONG).show();
+                        }
                     }
+                }
+            });
+            button_info_activity = findViewById(R.id.info_activity_Button);
+            button_info_activity.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showDialog();
                 }
             });
         }
         else StartApp();
         }
+
+    private void showDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottom_sheet_layout);
+        very_low_text = dialog.findViewById(R.id.text_very_low);
+        very_low_text.setText(Html.fromHtml("Выбирайте <b>минимальную нагрузку</b>, если работаете" +
+                " в офисе, не тренируетесь, а вечера и выходные предпочитаете проводить за компьютером, а не на прогулках."));
+        low_text = dialog.findViewById(R.id.text_low);
+        low_text.setText(Html.fromHtml("Параметр <b>«низкая нагрузка»</b> подойдёт для тех, кто много трудится по дому, гуляет" +
+                " с собакой, иногда выбирает прогулку вместо транспорта и изредка занимается спортом."));
+        middle_text = dialog.findViewById(R.id.text_middle);
+        middle_text.setText(Html.fromHtml("<b>Средняя нагрузка</b> подразумевает, что вы тренируетесь от 3 до 5 раз в неделю, при этом" +
+                " в свободное время не только лежите на диване, но и ходите пешком, выполняете бытовые задачи."));
+        high_text = dialog.findViewById(R.id.text_high);
+        high_text.setText(Html.fromHtml("<b>Высокая нагрузка</b> предполагает, что вы занимаетесь спортом 6–7 раз в неделю — или 3–5, но при этом ваша работа — физический труд."));
+        very_high_text = dialog.findViewById(R.id.text_very_high);
+        very_high_text.setText(Html.fromHtml("<b>Очень высокая нагрузка</b> характерна для тех, кто тренируется по 2 раза в день или много занимается спортом и работает физически, " +
+                "но при этом и о других видах активности не забывает."));
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+    }
+
+    private String validAge(){ // Валидация возраста
+        int ageText = Integer.parseInt(text_age.getText().toString());
+        if(ageText < 7 || ageText > 90) return "От 7 до 90 лет";
+        return null;
+    }
+    private String validHeight() { // Валидация роста
+        float heightText = Float.parseFloat(text_height.getText().toString());
+        if(heightText < 110 || heightText > 230) return "От 110 до 230 см";
+        return null;
+    }
+    private String validWeight() { // Валидация веса
+        float weightText = Float.parseFloat(text_weight.getText().toString());
+        if(weightText < 20 || weightText > 250) return "От 20 до 250 кг";
+        return null;
+    }
 
     protected void StartApp(){
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -191,5 +211,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
+
+    protected boolean CheckEditTexts(){
+        if(text_age.getText().length() == 0 || container_age.getHelperText() != null) return false;
+        if(text_height.getText().length() == 0 || container_height.getHelperText() != null) return false;
+        if(text_weight.getText().length() == 0 || container_weight.getHelperText() != null) return false;
+        return true;
+    }
+
 
 }

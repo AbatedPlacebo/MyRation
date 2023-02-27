@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <Spinner
-        android:id="@+id/target_spinner"
+        android:id="@+id/spinner_target"
         android:layout_width="197dp"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
@@ -37,9 +37,9 @@
         app:layout_constraintVertical_bias="0.065" />
 
     <Spinner
-        android:id="@+id/text_male"
-        android:layout_width="138dp"
-        android:layout_height="38dp"
+        android:id="@+id/spinner_male"
+        android:layout_width="197dp"
+        android:layout_height="36dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -48,10 +48,10 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.408"
+        app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.127" />
+        app:layout_constraintVertical_bias="0.13" />
 
     <EditText
         android:id="@+id/text_age"
@@ -104,10 +104,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.324" />
 
-    <EditText
-        android:id="@+id/text_allergy"
-        android:layout_width="138dp"
-        android:layout_height="38dp"
+    <Spinner
+        android:id="@+id/spinner_activity"
+        android:layout_width="197dp"
+        android:layout_height="36dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -116,10 +116,10 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.408"
+        app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.391" />
+        app:layout_constraintVertical_bias="0.394" />
 
     <TextView
         android:id="@+id/textView_target"
@@ -128,7 +128,7 @@
         android:text="Цель"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.035"
+        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.086" />
@@ -140,7 +140,7 @@
         android:text="Пол"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.033"
+        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.154" />
@@ -164,7 +164,7 @@
         android:text="Рост"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.027"
+        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.283" />
@@ -176,19 +176,19 @@
         android:text="Вес"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.345" />
 
     <TextView
-        android:id="@+id/textView_allergy"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:text="Аллергия"
+        android:id="@+id/textView_activity"
+        android:layout_width="85dp"
+        android:layout_height="27dp"
+        android:text="Активность"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.406" />

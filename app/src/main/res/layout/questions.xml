@@ -11,91 +11,315 @@
 
     <TextView
         android:id="@+id/answer_text_view"
-        android:layout_width="200dp"
+        android:layout_width="395dp"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="@string/a"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/question_header"
         android:textColor="@android:color/black"
-        android:textSize="30sp" />
+        android:gravity="center"
+        android:textSize="22sp" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="227dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        tools:context=".ui.notifications.NotificationsFragment">
 
-        <RadioButton
-            android:id="@+id/first_button"
-            android:layout_width="175dp"
-            android:layout_height="80dp"
-            android:layout_marginRight="20dp"
-            android:backgroundTint="#5BD91B"
-            android:text="@string/first_answer"
-            android:textSize="20sp" />
+        <!--<EditText
+            android:id="@+id/text_age"
+            android:layout_width="138dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.408"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.19" />-->
 
-        <RadioButton
-            android:id="@+id/second_button"
-            android:layout_width="wrap_content"
-            android:layout_height="77dp"
-            android:layout_marginRight="20dp"
-            android:backgroundTint="#E33328"
-            android:text="@string/second_answer"
-            android:textSize="20sp" />
+        <!--<EditText
+            android:id="@+id/text_height"
+            android:layout_width="138dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.408"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.258" /> -->
 
-        <RadioButton
-            android:id="@+id/third_button"
-            android:layout_width="177dp"
+
+        <!-- <EditText
+             android:id="@+id/text_weight"
+             android:layout_width="138dp"
+             android:layout_height="38dp"
+             android:layout_marginStart="8dp"
+             android:layout_marginTop="8dp"
+             android:layout_marginEnd="8dp"
+             android:inputType="number"
+             android:textAlignment="center"
+             android:textSize="15sp"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintHorizontal_bias="0.408"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent"
+             app:layout_constraintVertical_bias="0.324" />-->
+
+        <Spinner
+            android:id="@+id/spinner_target"
+            android:layout_width="197dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.824"
+            app:layout_constraintStart_toEndOf="@+id/textView_target"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.061" />
+
+        <Spinner
+            android:id="@+id/spinner_male"
+            android:layout_width="197dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.83"
+            app:layout_constraintStart_toEndOf="@+id/textView_male"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.125" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ageContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="181dp"
             android:layout_height="69dp"
-            android:layout_marginRight="20dp"
-            android:backgroundTint="#E33328"
-            android:text="@string/third_answer"
-            android:textSize="20sp" />
-        <!--<RadioButton
-            android:id="@+id/fourth_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:backgroundTint="#E33328"
-            android:text="Орехи"
-            android:textSize="20sp" />
-        <RadioButton
-            android:id="@+id/fiveth_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:text="Молоко"
-            android:backgroundTint="#E33328"
-            android:textSize="20sp" />
-        <RadioButton
-            android:id="@+id/sixth_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:text="Рыба"
-            android:backgroundTint="#E33328"
-            android:textSize="20sp" /> -->
-    </RadioGroup>
+            android:layout_marginHorizontal="20dp"
+            app:helperText="@string/required"
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.764"
+            app:layout_constraintStart_toEndOf="@+id/textView_age"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_male"
+            app:layout_constraintVertical_bias="0.026">
 
-    <EditText
-        android:id="@+id/input_text"
-        android:layout_width="105dp"
-        android:layout_height="63dp"
-        android:inputType="number"
-        android:visibility="invisible" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_age"
+                android:layout_width="148dp"
+                android:layout_height="45dp"
+                android:inputType="number"
+                android:lines="1" />
 
-    <TextView
-        android:id="@+id/hint_text"
-        android:layout_width="73dp"
-        android:layout_height="43dp"
-        android:text=""
-        android:textSize="10dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/next_button"
-        android:layout_width="194dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="200dp"
-        android:text="Далее"
-        app:cornerRadius="35dp" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/heightContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="181dp"
+            android:layout_height="69dp"
+            android:layout_marginHorizontal="20dp"
+            app:helperText="@string/required"
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.796"
+            app:layout_constraintStart_toEndOf="@+id/textView_height"
+            app:layout_constraintTop_toBottomOf="@+id/ageContainer"
+            app:layout_constraintVertical_bias="0.045">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_height"
+                android:layout_width="148dp"
+                android:layout_height="45dp"
+                android:inputType="number"
+                android:lines="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.425"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.269" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/weightContainer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="181dp"
+            android:layout_height="69dp"
+            android:layout_marginHorizontal="20dp"
+            app:helperText="@string/required"
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            app:layout_constraintBottom_toTopOf="@+id/spinner_activity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.803"
+            app:layout_constraintStart_toEndOf="@+id/textView_weight"
+            app:layout_constraintTop_toBottomOf="@+id/heightContainer"
+            app:layout_constraintVertical_bias="0.609">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_weight"
+                android:layout_width="148dp"
+                android:layout_height="45dp"
+                android:inputType="number"
+                android:lines="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.425"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.269" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/spinner_activity"
+            android:layout_width="197dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.722"
+            app:layout_constraintStart_toEndOf="@+id/textView_activity"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.623" />
+
+        <TextView
+            android:id="@+id/textView_target"
+            android:layout_width="70dp"
+            android:layout_height="28dp"
+            android:text="Цель"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.032"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.086" />
+
+        <TextView
+            android:id="@+id/textView_male"
+            android:layout_width="52dp"
+            android:layout_height="24dp"
+            android:text="Пол"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.034"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.153" />
+
+        <!--<TextView
+             android:id="@+id/textView_allergy"
+             android:layout_width="66dp"
+             android:layout_height="28dp"
+             android:text="Аллергия"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintHorizontal_bias="0.028"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent"
+             app:layout_constraintVertical_bias="0.406" /> -->
+
+
+        <TextView
+            android:id="@+id/textView_age"
+            android:layout_width="66dp"
+            android:layout_height="26dp"
+            android:text="Возраст"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.031"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.241" />
+
+        <TextView
+            android:id="@+id/textView_height"
+            android:layout_width="42dp"
+            android:layout_height="22dp"
+            android:text="Рост"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.029"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.377" />
+
+        <TextView
+            android:id="@+id/textView_weight"
+            android:layout_width="36dp"
+            android:layout_height="24dp"
+            android:text="Вес"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.029"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.515" />
+
+        <TextView
+            android:id="@+id/textView_activity"
+            android:layout_width="94dp"
+            android:layout_height="27dp"
+            android:text="Активность"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.034"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.631" />
+
+        <Button
+            android:id="@+id/button_next"
+            android:layout_width="134dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="111dp"
+            android:text="Далее"
+            app:cornerRadius="35dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.451"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.729" />
+
+        <ImageButton
+            android:id="@+id/info_activity_Button"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.289"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.631"
+            app:srcCompat="@drawable/ic_information_24dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
