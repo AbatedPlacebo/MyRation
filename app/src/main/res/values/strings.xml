@@ -15,7 +15,7 @@
     <string name="third_answer">Набор веса</string>
     <string name="hint_height">см</string>
     <string name="hint_weight">кг</string>
-    <string name="required">Необходимое поле</string>
+    <string name="required">Необходимо заполнить</string>
     <string-array name="target_array">
         <item>Сброс веса</item>
         <item>Поддержка веса</item>

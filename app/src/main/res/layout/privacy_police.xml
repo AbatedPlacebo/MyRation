@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_bg">
+
+    <TextView
+        android:id="@+id/text_privacy_police"
+        android:layout_width="match_parent"
+        android:layout_height="597dp"
+        android:layout_marginTop="5dp"
+        android:scrollbars="vertical"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="8sp" />
+
+    <CheckBox
+        android:id="@+id/checkbox_privacy"
+        android:layout_width="401dp"
+        android:layout_height="wrap_content"
+        android:text="Я прочитал и согласен с условиями пользовательского соглашения"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/button_privacy_next"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_gravity="center"
+        android:text="Далее"
+        android:textSize="10dp" />
+
+</LinearLayout>
