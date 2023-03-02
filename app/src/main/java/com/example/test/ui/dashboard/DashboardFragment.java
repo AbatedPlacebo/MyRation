@@ -97,14 +97,15 @@ public class DashboardFragment extends Fragment {
                 public void run() {
                     try {
                         bitmap[0] = BitmapFactory.decodeStream((InputStream) new URL(
-                                db.getProducts().get(i).URL).getContent());
+                                db.getProducts().get(i).URLImage).getContent());
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             });
             thread.start();
-
+            bitmap[0] = Bitmap.createScaledBitmap(bitmap[0], holder.productImage.getWidth(),holder.productImage.getHeight(),true);
             holder.productImage.setImageBitmap(bitmap[0]);
             holder.productTitle.setText(db.getProducts().get(i).productName);
             holder.productDetails.setText(

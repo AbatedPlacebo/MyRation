@@ -15,6 +15,7 @@ public class DatabaseLoad {
     public DatabaseLoad(Context context){
         db = Room.databaseBuilder(context,
                         AppDatabase.class, "my_ratio")
+                .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .createFromAsset("database/my_ratio.db")
                 .build();

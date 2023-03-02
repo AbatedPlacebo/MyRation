@@ -36,4 +36,6 @@ public class Catalog {
     public float productCarbs;
     @ColumnInfo(name = "url")
     public String URL;
+    @ColumnInfo(name = "image")
+    public String URLImage;
 }
