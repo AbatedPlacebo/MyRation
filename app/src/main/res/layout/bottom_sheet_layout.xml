@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,98 +11,133 @@
         android:id="@+id/choosetxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
         android:text="Физическая активность"
+        android:textAlignment="center"
         android:textColor="@color/black"
-        android:layout_marginTop="5dp"
         android:textSize="25dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:id="@+id/layout_very_low"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choosetxt"
+        app:layout_constraintVertical_bias="0.03">
 
 
         <TextView
             android:id="@+id/text_very_low"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
             android:layout_marginLeft="30dp"
-            android:textSize="16sp"/>
+            android:text=""
+            android:textSize="16sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layout_low"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_very_low"
+        app:layout_constraintVertical_bias="0.045"
+        tools:layout_editor_absoluteX="-8dp">
 
         <TextView
             android:id="@+id/text_low"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="dd"
             android:layout_marginLeft="30dp"
-            android:textSize="16sp"/>
+            android:text="dd"
+            android:textSize="16sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/layout_middle"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_low"
+        app:layout_constraintVertical_bias="0.069">
 
         <TextView
             android:id="@+id/text_middle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="dd"
             android:layout_marginLeft="30dp"
-            android:textSize="16sp"/>
+            android:text="dd"
+            android:textSize="16sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/layout_high"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_middle"
+        app:layout_constraintVertical_bias="0.063">
 
 
         <TextView
             android:id="@+id/text_high"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Upload"
             android:layout_marginLeft="30dp"
-            android:textSize="16sp"/>
+            android:text="Upload"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layout_very_high"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_high"
+        app:layout_constraintVertical_bias="0.084">
 
 
         <TextView
             android:id="@+id/text_very_high"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Upload"
             android:layout_marginLeft="30dp"
-            android:textSize="16sp"/>
+            android:text="Upload"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
