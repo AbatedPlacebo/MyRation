@@ -15,8 +15,8 @@ public interface CategoryDao {
     @Query("SELECT * FROM categories WHERE id IN (:categoriesIds)")
     List<Categories> loadAllByIds(int[] categoriesIds);
 
-    @Query("SELECT * FROM categories WHERE name LIKE :name LIMIT 1")
-    Categories findByName(String name);
+    @Query("SELECT * FROM categories WHERE id LIKE :id LIMIT 1")
+    Categories findById(int id);
 
     @Insert
     void insertAll(Categories... categories);

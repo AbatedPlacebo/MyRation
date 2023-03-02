@@ -1,8 +1,10 @@
 package com.example.test.ui.dashboard;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,9 +43,9 @@ public class DashboardFragment extends Fragment {
         View root = binding.getRoot();
         ListView listView = root.findViewById(R.id.listview);
 
-        DatabaseLoad db = new DatabaseLoad();
-        db.populate(getContext());
-        CustomAdapter listAdapter = new CustomAdapter(db.getProducts());
+        DatabaseLoad db = new DatabaseLoad(getContext());
+        db.populate();
+        CustomAdapter listAdapter = new CustomAdapter(db);
         listView.setAdapter(listAdapter);
         return root;
     }
@@ -53,49 +55,49 @@ public class DashboardFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-    class CustomAdapter extends BaseAdapter {
-        List<Catalog> items;
 
-        public CustomAdapter(List<Catalog> items) {
+    class CustomAdapter extends BaseAdapter {
+        DatabaseLoad db;
+
+        public CustomAdapter(DatabaseLoad db) {
             super();
-            this.items = items;
+            this.db = db;
         }
 
         @Override
         public int getCount() {
-            return items.size();
+            return db.getProducts().size();
         }
 
         @Override
         public Object getItem(int i) {
-            return items.get(i);
+            return db.getProducts().get(i);
         }
 
         @Override
         public long getItemId(int i) {
-            return items.get(i).hashCode();
+            return db.getProducts().get(i).hashCode();
         }
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             View singleItem = view;
             ProductViewHolder holder = null;
-            if (singleItem == null){
+            if (singleItem == null) {
                 LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                singleItem = layoutInflater.inflate(R.layout.single_product_item,viewGroup, false);
+                singleItem = layoutInflater.inflate(R.layout.single_product_item, viewGroup, false);
                 holder = new ProductViewHolder(singleItem);
                 singleItem.setTag(holder);
-            }
-            else {
+            } else {
                 holder = (ProductViewHolder) singleItem.getTag();
             }
             final Bitmap[] bitmap = {null};
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    try  {
-                        bitmap[0] = BitmapFactory.decodeStream((InputStream)new URL(
-                                items.get(i).URL).getContent());
+                    try {
+                        bitmap[0] = BitmapFactory.decodeStream((InputStream) new URL(
+                                db.getProducts().get(i).URL).getContent());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -104,18 +106,20 @@ public class DashboardFragment extends Fragment {
             thread.start();
 
             holder.productImage.setImageBitmap(bitmap[0]);
-            holder.productTitle.setText(items.get(i).productName);
+            holder.productTitle.setText(db.getProducts().get(i).productName);
             holder.productDetails.setText(
-                    "Категория: " + items.get(i).productCategory +
-                    "\nБелки: " + String.valueOf(items.get(i).productProteins) +
-                            "\nЖиры: " + String.valueOf(items.get(i).productFats) +
-                            "\nУглеводы: " + String.valueOf(items.get(i).productCarbs)
+                    String.format("Категория: %s\nБелки: %.1f\nЖиры: %.1f\nУглеводы: %.1f",
+                            db.findCategoryById(db.getProducts().get(i).productCategory)
+                                    .categoriesName,
+                            db.getProducts().get(i).productProteins,
+                            db.getProducts().get(i).productFats,
+                            db.getProducts().get(i).productCarbs)
             );
-            singleItem.setOnClickListener(new View.OnClickListener(){
+            singleItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getContext(), "You clicked:" + items.get(i).productName,
-                            Toast.LENGTH_SHORT).show();
+                    Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse(db.getProducts().get(i).URL));
+                    startActivity(browser);
                 }
             });
             return singleItem;

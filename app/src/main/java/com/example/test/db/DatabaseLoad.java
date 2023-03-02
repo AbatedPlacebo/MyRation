@@ -9,17 +9,24 @@ import java.util.List;
 public class DatabaseLoad {
     List<Categories> categories;
     List<Catalog> products;
-
-    public void populate(Context context){
-        AppDatabase db = Room.databaseBuilder(context,
-                AppDatabase.class, "my_ratio")
+    ProductDao productDao;
+    CategoryDao categoryDao;
+    AppDatabase db;
+    public DatabaseLoad(Context context){
+        db = Room.databaseBuilder(context,
+                        AppDatabase.class, "my_ratio")
                 .allowMainThreadQueries()
                 .createFromAsset("database/my_ratio.db")
                 .build();
-        ProductDao productDao = db.productDao();
-        CategoryDao categoryDao = db.categoryDao();
+        productDao = db.productDao();
+        categoryDao = db.categoryDao();
+    }
+    public void populate(){
         categories = categoryDao.getAll();
         products = productDao.getAll();
+    }
+    public Categories findCategoryById(int id){
+        return categoryDao.findById(id);
     }
     public List<Categories> getCategories(){
         return categories;
