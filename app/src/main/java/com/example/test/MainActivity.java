@@ -3,9 +3,11 @@ package com.example.test;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
             target_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
             spinner_target.setAdapter(target_adapter);
-
             spinner_male = findViewById(R.id.spinner_male);
             ArrayAdapter<CharSequence> male_adapter = ArrayAdapter.createFromResource(this,
                     R.array.male_array, android.R.layout.simple_spinner_item);
@@ -132,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
             male_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
             spinner_male.setAdapter(male_adapter);
-
             text_age = findViewById(R.id.text_age);
             container_age = findViewById(R.id.ageContainer);
             text_age.setOnFocusChangeListener(new View.OnFocusChangeListener() {

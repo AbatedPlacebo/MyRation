@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/text_privacy_police"
         android:layout_width="match_parent"
-        android:layout_height="592dp"
+        android:layout_height="314dp"
         android:scrollbars="vertical"
         android:text=""
         android:textColor="@color/black"
@@ -25,7 +25,7 @@
     <CheckBox
         android:id="@+id/checkbox_privacy"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:text="Я прочитал и согласен с условиями пользовательского соглашения"
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,13 +38,13 @@
     <Button
         android:id="@+id/button_privacy_next"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:text="Далее"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkbox_privacy"
-        app:layout_constraintVertical_bias="0.875" />
+        app:layout_constraintVertical_bias="0.325" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,250 +10,222 @@
     tools:context=".MainActivity">
 
 
-        <Spinner
-            android:id="@+id/spinner_target"
-            android:layout_width="197dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:inputType="text"
-            android:textAlignment="center"
-            android:textSize="15sp"
+    <Spinner
+        android:id="@+id/spinner_target"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner_male"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.734"
+        app:layout_constraintStart_toEndOf="@+id/textView_target"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.516" />
+
+    <Spinner
+        android:id="@+id/spinner_male"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.741"
+        app:layout_constraintStart_toEndOf="@+id/textView_male"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.163" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ageContainer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+
+        app:helperText=""
+        app:helperTextTextColor="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_male"
+        app:layout_constraintVertical_bias="0.048">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|left"
+            android:hint="Возраст"
+            android:inputType="number"
+            android:lines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/heightContainer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:helperText=""
+        app:helperTextTextColor="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ageContainer"
+        app:layout_constraintVertical_bias="0.135">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Рост"
+            android:inputType="numberDecimal"
+            android:lines="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.705"
-            app:layout_constraintStart_toEndOf="@+id/textView_target"
+            app:layout_constraintHorizontal_bias="0.425"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.107" />
+            app:layout_constraintVertical_bias="0.269" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/spinner_male"
-            android:layout_width="197dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:inputType="text"
-            android:textAlignment="center"
-            android:textSize="15sp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/weightContainer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:helperText=""
+        app:helperTextTextColor="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heightContainer"
+        app:layout_constraintVertical_bias="0.194">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Вес"
+            android:inputType="numberDecimal"
+            android:lines="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.74"
-            app:layout_constraintStart_toEndOf="@+id/textView_male"
+            app:layout_constraintHorizontal_bias="0.425"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.208" />
+            app:layout_constraintVertical_bias="0.269" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ageContainer"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="181dp"
-            android:layout_height="69dp"
-            android:layout_marginHorizontal="20dp"
-            app:helperText=""
-            app:helperTextTextColor="@android:color/holo_red_dark"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.609"
-            app:layout_constraintStart_toEndOf="@+id/textView_age"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_male"
-            app:layout_constraintVertical_bias="0.065">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_age"
-                android:layout_width="148dp"
-                android:layout_height="45dp"
-                android:inputType="number"
-                android:lines="1" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/heightContainer"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="181dp"
-            android:layout_height="69dp"
-            android:layout_marginHorizontal="20dp"
-            app:helperText=""
-            app:helperTextTextColor="@android:color/holo_red_dark"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.65"
-            app:layout_constraintStart_toEndOf="@+id/textView_height"
-            app:layout_constraintTop_toBottomOf="@+id/ageContainer"
-            app:layout_constraintVertical_bias="0.09">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_height"
-                android:layout_width="148dp"
-                android:layout_height="45dp"
-                android:inputType="numberDecimal"
-                android:lines="1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.425"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.269" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/weightContainer"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="181dp"
-            android:layout_height="69dp"
-            android:layout_marginHorizontal="20dp"
-            app:helperText=""
-            app:helperTextTextColor="@android:color/holo_red_dark"
-            app:layout_constraintBottom_toTopOf="@+id/spinner_activity"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.661"
-            app:layout_constraintStart_toEndOf="@+id/textView_weight"
-            app:layout_constraintTop_toBottomOf="@+id/heightContainer"
-            app:layout_constraintVertical_bias="0.507">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_weight"
-                android:layout_width="148dp"
-                android:layout_height="45dp"
-                android:inputType="numberDecimal"
-                android:lines="1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.425"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.269" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Spinner
-            android:id="@+id/spinner_activity"
-            android:layout_width="197dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:inputType="text"
-            android:textAlignment="center"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.642"
-            app:layout_constraintStart_toEndOf="@+id/textView_activity"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.748" />
+    <Spinner
+        android:id="@+id/spinner_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintStart_toEndOf="@+id/info_activity_Button"
+        app:layout_constraintTop_toBottomOf="@+id/weightContainer"
+        app:layout_constraintVertical_bias="0.477" />
 
     <TextView
         android:id="@+id/textView_target"
-        android:layout_width="70dp"
-        android:layout_height="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
         android:text="Цель"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.128" />
+        app:layout_constraintTop_toBottomOf="@+id/answer_text_view"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView_male"
-        android:layout_width="52dp"
-        android:layout_height="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="49dp"
         android:text="Пол"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/ageContainer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23" />
-
-    <TextView
-        android:id="@+id/textView_age"
-        android:layout_width="66dp"
-        android:layout_height="26dp"
-        android:text="Возраст"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.344" />
-
-    <TextView
-        android:id="@+id/textView_height"
-        android:layout_width="42dp"
-        android:layout_height="22dp"
-        android:text="Рост"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.486" />
-
-    <TextView
-        android:id="@+id/textView_weight"
-        android:layout_width="36dp"
-        android:layout_height="24dp"
-        android:text="Вес"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.042"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.629" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_target"
+        app:layout_constraintVertical_bias="0.166" />
 
     <TextView
         android:id="@+id/textView_activity"
-        android:layout_width="94dp"
-        android:layout_height="27dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
         android:text="Активность"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_next"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.754" />
+        app:layout_constraintTop_toBottomOf="@+id/weightContainer"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
-            android:id="@+id/button_next"
-            android:layout_width="134dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="111dp"
-            android:text="Далее"
-            app:cornerRadius="35dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.429"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.891" />
+        android:id="@+id/button_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="111dp"
+        android:text="Далее"
+        app:cornerRadius="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.867" />
 
     <ImageButton
         android:id="@+id/info_activity_Button"
-        android:layout_width="25dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="63dp"
         android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.284"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75"
+        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintStart_toEndOf="@+id/textView_activity"
+        app:layout_constraintTop_toBottomOf="@+id/weightContainer"
+        app:layout_constraintVertical_bias="0.01"
         app:srcCompat="@drawable/ic_information_24dp" />
 
     <TextView
-            android:id="@+id/answer_text_view"
-            android:layout_width="395dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="26dp"
-            android:gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/question_header"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toTopOf="@+id/spinner_target"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/answer_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/question_header"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner_target"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 
