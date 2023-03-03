@@ -91,22 +91,7 @@ public class DashboardFragment extends Fragment {
             } else {
                 holder = (ProductViewHolder) singleItem.getTag();
             }
-            final Bitmap[] bitmap = {null};
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        bitmap[0] = BitmapFactory.decodeStream((InputStream) new URL(
-                                db.getProducts().get(i).URLImage).getContent());
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            thread.start();
-            bitmap[0] = Bitmap.createScaledBitmap(bitmap[0], holder.productImage.getWidth(),holder.productImage.getHeight(),true);
-            holder.productImage.setImageBitmap(bitmap[0]);
+            new DownloadImageTask(holder.productImage).execute(db.getProducts().get(i).URLImage);
             holder.productTitle.setText(db.getProducts().get(i).productName);
             holder.productDetails.setText(
                     String.format("Категория: %s\nБелки: %.1f\nЖиры: %.1f\nУглеводы: %.1f",
@@ -123,6 +108,7 @@ public class DashboardFragment extends Fragment {
                     startActivity(browser);
                 }
             });
+
             return singleItem;
         }
     }
