@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
@@ -20,12 +21,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.test.ui.JSONHelper;
 import com.example.test.ui.User;
+
+
+import com.example.test.db.DatabaseLoad;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import androidx.room.Room;
+
 import com.example.test.databinding.ActivityMainBinding;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
