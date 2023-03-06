@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,20 +29,26 @@ public class HomeFragment extends Fragment {
     private ListView listView;
     private TextView textView_stats;
     private TextView textView_stage;
+    private Button buttonForward;
+    private Button buttonBack;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
-
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         listView = root.findViewById(R.id.listview_products);
-
+        homeViewModel.getRationNumber().observe(getViewLifecycleOwner(), rationNumber -> {
+            textView_stage.setText(rationNumber.toString() + "/");
+        });
+        homeViewModel.getRationNumber().observe(getViewLifecycleOwner(), rationNumber -> {
+            textView_stage.setText(rationNumber.toString() + "/");
+        });
         textView_stats = root.findViewById(R.id.text_stats);
         textView_stage = root.findViewById(R.id.text_stage);
-        textView_stage.setText("1 из 4");
         textView_stats.setText("Жиры: 20\nБелки: 15\nУглеводы: 100");
+
         List<String> list = new ArrayList<>();
         for(int i=0;i<3;i++)
             list.add("Item "+i);
@@ -56,6 +63,15 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    public void buttonBackEvent(View view) {
+
+    }
+
+    public void buttonForwardEvent(View view) {
+
+    }
+
     public class CustomAdapter extends BaseAdapter {
         List<String> items;
 
