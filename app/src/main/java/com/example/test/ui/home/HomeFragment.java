@@ -40,13 +40,30 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
         listView = root.findViewById(R.id.listview_products);
         homeViewModel.getRationNumber().observe(getViewLifecycleOwner(), rationNumber -> {
-            textView_stage.setText(rationNumber.toString() + "/");
-        });
-        homeViewModel.getRationNumber().observe(getViewLifecycleOwner(), rationNumber -> {
-            textView_stage.setText(rationNumber.toString() + "/");
+            textView_stage.setText(rationNumber.toString() + "/4");
+
         });
         textView_stats = root.findViewById(R.id.text_stats);
         textView_stage = root.findViewById(R.id.text_stage);
+        buttonBack = root.findViewById(R.id.buttonBackHome);
+        buttonForward = root.findViewById(R.id.buttonForwardHome);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int curValue =homeViewModel.getRationNumber().getValue();
+                if (homeViewModel.getRationNumber().getValue() > 1)
+                    homeViewModel.getRationNumber().setValue(curValue - 1);
+            }
+        });
+        buttonForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int curValue =homeViewModel.getRationNumber().getValue();
+                if (homeViewModel.getRationNumber().getValue() < 4)
+                    homeViewModel.getRationNumber().setValue(curValue + 1);
+            }
+        });
+
         textView_stats.setText("Жиры: 20\nБелки: 15\nУглеводы: 100");
 
         List<String> list = new ArrayList<>();
@@ -64,13 +81,7 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
-    public void buttonBackEvent(View view) {
 
-    }
-
-    public void buttonForwardEvent(View view) {
-
-    }
 
     public class CustomAdapter extends BaseAdapter {
         List<String> items;
