@@ -18,6 +18,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.test.MainActivity;
 import com.example.test.R;
 import com.example.test.databinding.FragmentHomeBinding;
+import com.example.test.db.DatabaseLoad;
+import com.example.test.ui.dashboard.CustomAdapter;
 import com.example.test.ui.dashboard.DashboardFragment;
 
 import java.util.ArrayList;
@@ -38,7 +40,13 @@ public class HomeFragment extends Fragment {
                 new ViewModelProvider(this).get(HomeViewModel.class);
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        listView = root.findViewById(R.id.listview_products);
+        listView = root.findViewById(R.id.listviewHome);
+        DatabaseLoad db = new DatabaseLoad(getContext());
+        db.populate();
+        com.example.test.ui.dashboard.CustomAdapter listAdapter = new com.example.test.ui.dashboard.CustomAdapter(db, getContext());
+        listView.setAdapter(listAdapter);
+
+
         homeViewModel.getRationNumber().observe(getViewLifecycleOwner(), rationNumber -> {
             textView_stage.setText(rationNumber.toString() + "/4");
 
@@ -66,11 +74,6 @@ public class HomeFragment extends Fragment {
 
         textView_stats.setText("Жиры: 20\nБелки: 15\nУглеводы: 100");
 
-        List<String> list = new ArrayList<>();
-        for(int i=0;i<3;i++)
-            list.add("Item "+i);
-        CustomAdapter listAdapter = new CustomAdapter(list);
-        listView.setAdapter(listAdapter);
 
         return root;
     }

@@ -42,11 +42,11 @@ public class DashboardFragment extends Fragment {
 
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        ListView listView = root.findViewById(R.id.listview);
+        ListView listView = root.findViewById(R.id.listviewDashboard);
 
         DatabaseLoad db = new DatabaseLoad(getContext());
         db.populate();
-        CustomAdapter listAdapter = new CustomAdapter(db);
+        CustomAdapter listAdapter = new CustomAdapter(db, getContext());
         listView.setAdapter(listAdapter);
         return root;
     }
@@ -57,62 +57,6 @@ public class DashboardFragment extends Fragment {
         binding = null;
     }
 
-    class CustomAdapter extends BaseAdapter {
-        DatabaseLoad db;
 
-        public CustomAdapter(DatabaseLoad db) {
-            super();
-            this.db = db;
-        }
-
-        @Override
-        public int getCount() {
-            return db.getProducts().size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return db.getProducts().get(i);
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return db.getProducts().get(i).hashCode();
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            View singleItem = view;
-            ProductViewHolder holder = null;
-            if (singleItem == null) {
-                LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                singleItem = layoutInflater.inflate(R.layout.single_product_item, viewGroup, false);
-                holder = new ProductViewHolder(singleItem);
-                singleItem.setTag(holder);
-            } else {
-                holder = (ProductViewHolder) singleItem.getTag();
-            }
-            Picasso.get().load(db.getProducts().get(i).URLImage).into(holder.productImage);
-            holder.productTitle.setText(db.getProducts().get(i).productName);
-            holder.productDetails.setText(
-                    String.format("Категория: %s\nЦена: %d ₽\nБелки: %.1f\nЖиры: %.1f\nУглеводы: %.1f",
-                            db.findCategoryById(db.getProducts().get(i).productCategory)
-                                    .categoriesName,
-                            db.getProducts().get(i).productPrice,
-                            db.getProducts().get(i).productProteins,
-                            db.getProducts().get(i).productFats,
-                            db.getProducts().get(i).productCarbs)
-            );
-            singleItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse(db.getProducts().get(i).URL));
-                    startActivity(browser);
-                }
-            });
-
-            return singleItem;
-        }
-    }
 
 }
