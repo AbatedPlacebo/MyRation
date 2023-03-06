@@ -24,6 +24,7 @@ import com.example.test.R;
 import com.example.test.databinding.FragmentDashboardBinding;
 import com.example.test.db.Catalog;
 import com.example.test.db.DatabaseLoad;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -91,12 +92,13 @@ public class DashboardFragment extends Fragment {
             } else {
                 holder = (ProductViewHolder) singleItem.getTag();
             }
-            new DownloadImageTask(holder.productImage).execute(db.getProducts().get(i).URLImage);
+            Picasso.get().load(db.getProducts().get(i).URLImage).into(holder.productImage);
             holder.productTitle.setText(db.getProducts().get(i).productName);
             holder.productDetails.setText(
-                    String.format("Категория: %s\nБелки: %.1f\nЖиры: %.1f\nУглеводы: %.1f",
+                    String.format("Категория: %s\nЦена: %d ₽\nБелки: %.1f\nЖиры: %.1f\nУглеводы: %.1f",
                             db.findCategoryById(db.getProducts().get(i).productCategory)
                                     .categoriesName,
+                            db.getProducts().get(i).productPrice,
                             db.getProducts().get(i).productProteins,
                             db.getProducts().get(i).productFats,
                             db.getProducts().get(i).productCarbs)
