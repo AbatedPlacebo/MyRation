@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
 
             button_next = findViewById(R.id.button_next);
 
-            user = new User(0,0,0,0,0,0,new String[]{"a","b"});
+            user = new User(0,0,0,0,0,0,0,new String[]{"a","b"});
             button_next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -7,15 +7,25 @@ public class User {
     private float height;
     private float weight;
     private int activity; // 0 - минимальная, 1 - низкая, 2 - средняя, 3 - высокая, 4 - очень высокая
+    private float budget; // 0 - не вводил, 1 - вводил
     private String exceps[];
 
-    public User(int target, int male, int age, float height, float weight, int activity, String[] exceps) {
+    public User(int target, int male, int age, float height, float weight, int activity, float budget, String[] exceps) {
         this.target = target;
         this.male = male;
         this.age = age;
         this.height = height;
         this.weight = weight;
+        this.budget = budget;
         this.exceps = exceps;
+    }
+
+    public boolean isHasbudget() {
+        return budget > 100;
+    }
+
+    public void setbudget(float budget) {
+        this.budget = budget;
     }
 
     public int getActivity() {
