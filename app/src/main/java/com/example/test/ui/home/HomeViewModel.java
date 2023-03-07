@@ -18,6 +18,13 @@ public class HomeViewModel extends ViewModel {
             new MutableLiveData(1);
     private final MutableLiveData<Integer> rationPrice =
             new MutableLiveData(0);
+    private final MutableLiveData<Integer> proteinsTotal =
+            new MutableLiveData(0);
+    private final MutableLiveData<Integer> fatsTotal =
+            new MutableLiveData(0);
+    private final MutableLiveData<Integer> carbsTotal =
+            new MutableLiveData(0);
+
     public HomeViewModel() {
 
     }
@@ -26,6 +33,15 @@ public class HomeViewModel extends ViewModel {
     }
     public MutableLiveData<Integer> getRationPrice() {
         return rationPrice;
+    }
+    public MutableLiveData<Integer> getProteinsTotal() {
+        return proteinsTotal;
+    }
+    public MutableLiveData<Integer> getFatsTotal() {
+        return fatsTotal;
+    }
+    public MutableLiveData<Integer> getCarbsTotal() {
+        return carbsTotal;
     }
     public List<String> generateProducts(){
         List<String> list = new ArrayList<String>();

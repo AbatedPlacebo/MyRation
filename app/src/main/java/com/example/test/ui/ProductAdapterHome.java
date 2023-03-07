@@ -12,8 +12,25 @@ import com.example.test.R;
 import com.example.test.db.DatabaseLoad;
 
 public class ProductAdapterHome extends ProductAdapter{
-    public ProductAdapterHome(DatabaseLoad db, Context context) {
+    int stage;
+    public ProductAdapterHome(DatabaseLoad db, Context context, int stage) {
         super(db, context);
+        this.stage = stage;
+    }
+
+    @Override
+    public int getCount() {
+        return db.getListRation(stage).size();
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return db.getListRation(stage).get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return db.getListRation(stage).get(i).hashCode();
     }
 
     @Override
@@ -21,9 +38,9 @@ public class ProductAdapterHome extends ProductAdapter{
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.getProducts().remove(i);
+                db.getListRation(stage).remove(i);
                 notifyDataSetChanged();
-                if (db.getProducts().isEmpty()){
+                if (db.getListRation(stage).isEmpty()){
                     Toast toast = Toast.makeText(context, "Все продукты удалены",
                             Toast.LENGTH_SHORT);
                     toast.show();

@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
 
             button_next = findViewById(R.id.button_next);
 
-            user = new User(0,0,0,0,0,0,new String[]{"a","b"});
+            user = new User(0,0,0,0,0,0);
             button_next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -194,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
                         user.setHeight(Float.parseFloat(String.valueOf(text_height.getText())));
                         user.setWeight(Float.parseFloat(String.valueOf(text_weight.getText())));
                         user.setActivity(spinner_activity.getSelectedItemPosition());
+                        user.setPFCC();
                         boolean result = JSONHelper.exportToJSON(getApplicationContext(), user); // сохраняем введённые данные в JSON-файл
                         if(result){
                             Toast.makeText(getApplicationContext(), "Данные сохранены", Toast.LENGTH_LONG).show();

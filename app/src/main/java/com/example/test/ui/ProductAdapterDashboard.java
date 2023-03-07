@@ -14,6 +14,21 @@ public class ProductAdapterDashboard extends ProductAdapter {
     }
 
     @Override
+    public int getCount() {
+        return db.getProducts().size();
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return db.getProducts().get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return db.getProducts().get(i).hashCode();
+    }
+
+    @Override
     View.OnClickListener getActionClick(int i, View singleItem, ViewGroup viewGroup) {
         return new View.OnClickListener() {
             @Override

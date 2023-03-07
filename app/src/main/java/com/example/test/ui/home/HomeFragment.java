@@ -20,8 +20,10 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.test.R;
 import com.example.test.databinding.FragmentHomeBinding;
 import com.example.test.db.DatabaseLoad;
+import com.example.test.ui.JSONHelper;
 import com.example.test.ui.ProductAdapter;
 import com.example.test.ui.ProductAdapterHome;
+import com.example.test.ui.User;
 
 public class HomeFragment extends Fragment {
 
@@ -31,7 +33,7 @@ public class HomeFragment extends Fragment {
     private TextView textView_stage;
     private Button buttonForward;
     private Button buttonBack;
-
+    private User user;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel =
@@ -41,7 +43,10 @@ public class HomeFragment extends Fragment {
         listView = root.findViewById(R.id.listviewHome);
         DatabaseLoad db = new DatabaseLoad(getContext());
         db.populate();
-        ProductAdapter listAdapter = new ProductAdapterHome(db, getContext());
+        user = JSONHelper.importFromJSON(getContext());
+        db.setRations(user);
+        ProductAdapter listAdapter = new ProductAdapterHome(db, getContext(),
+                homeViewModel.getRationNumber().getValue() - 1);
         listView.setAdapter(listAdapter);
         homeViewModel.getRationNumber().observe(getViewLifecycleOwner(), rationNumber -> {
             textView_stage.setText(rationNumber.toString() + "/4");
@@ -69,10 +74,10 @@ public class HomeFragment extends Fragment {
                     homeViewModel.getRationNumber().setValue(curValue + 1);
             }
         });
-
-        textView_stats.setText("Жиры: 20\nБелки: 15\nУглеводы: 100");
-
-
+        textView_stats.setText(String.format("Белки: %f\nЖиры: %f\nУглеводы: %f",
+                user.getCurrentProteins(),
+                user.getCurrentFats(),
+                user.getCurrentCarbs()));
         return root;
     }
 

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.example.test.R;
+import com.example.test.db.Catalog;
 import com.example.test.db.DatabaseLoad;
 import com.squareup.picasso.Picasso;
 
@@ -23,19 +24,13 @@ abstract public class ProductAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount() {
-        return db.getProducts().size();
-    }
+    abstract public int getCount();
 
     @Override
-    public Object getItem(int i) {
-        return db.getProducts().get(i);
-    }
+    abstract public Object getItem(int i);
 
     @Override
-    public long getItemId(int i) {
-        return db.getProducts().get(i).hashCode();
-    }
+    abstract public long getItemId(int i);
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
@@ -52,16 +47,16 @@ abstract public class ProductAdapter extends BaseAdapter {
             holder = (ProductViewHolder) singleItem.getTag();
         }
 
-        Picasso.get().load(db.getProducts().get(i).URLImage).into(holder.productImage);
-        holder.productTitle.setText(db.getProducts().get(i).productName);
+        Picasso.get().load(((Catalog) getItem(i)).URLImage).into(holder.productImage);
+        holder.productTitle.setText(((Catalog) getItem(i)).productName);
         holder.productDetails.setText(
                 String.format("Категория: %s\nЦена: %d ₽\nБелки: %.1f\nЖиры: %.1f\nУглеводы: %.1f",
-                        db.findCategoryById(db.getProducts().get(i).productCategory)
+                        db.findCategoryById(((Catalog) getItem(i)).productCategory)
                                 .categoriesName,
-                        db.getProducts().get(i).productPrice,
-                        db.getProducts().get(i).productProteins,
-                        db.getProducts().get(i).productFats,
-                        db.getProducts().get(i).productCarbs)
+                        ((Catalog) getItem(i)).productPrice,
+                        ((Catalog) getItem(i)).productProteins,
+                        ((Catalog) getItem(i)).productFats,
+                        ((Catalog) getItem(i)).productCarbs)
         );
         singleItem.setOnClickListener(getActionClick(i, singleItem, viewGroup));
 
