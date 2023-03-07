@@ -16,11 +16,16 @@ public class HomeViewModel extends ViewModel {
 
     private final MutableLiveData<Integer> rationNumber =
             new MutableLiveData(1);
+    private final MutableLiveData<Integer> rationPrice =
+            new MutableLiveData(0);
     public HomeViewModel() {
 
     }
     public MutableLiveData<Integer> getRationNumber() {
         return rationNumber;
+    }
+    public MutableLiveData<Integer> getRationPrice() {
+        return rationPrice;
     }
     public List<String> generateProducts(){
         List<String> list = new ArrayList<String>();

@@ -12,7 +12,8 @@ public class DatabaseLoad {
     ProductDao productDao;
     CategoryDao categoryDao;
     AppDatabase db;
-    public DatabaseLoad(Context context){
+
+    public DatabaseLoad(Context context) {
         db = Room.databaseBuilder(context,
                         AppDatabase.class, "my_ratio")
                 .fallbackToDestructiveMigration()
@@ -22,17 +23,21 @@ public class DatabaseLoad {
         productDao = db.productDao();
         categoryDao = db.categoryDao();
     }
-    public void populate(){
+
+    public void populate() {
         categories = categoryDao.getAll();
         products = productDao.getAll();
     }
-    public Categories findCategoryById(int id){
+
+    public Categories findCategoryById(int id) {
         return categoryDao.findById(id);
     }
-    public List<Categories> getCategories(){
+
+    public List<Categories> getCategories() {
         return categories;
     }
-    public List<Catalog> getProducts(){
+
+    public List<Catalog> getProducts() {
         return products;
     }
 }

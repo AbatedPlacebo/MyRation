@@ -1,29 +1,27 @@
 package com.example.test.ui.home;
 
-import android.graphics.Point;
+import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.test.MainActivity;
 import com.example.test.R;
 import com.example.test.databinding.FragmentHomeBinding;
 import com.example.test.db.DatabaseLoad;
-import com.example.test.ui.dashboard.CustomAdapter;
-import com.example.test.ui.dashboard.DashboardFragment;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.test.ui.ProductAdapter;
+import com.example.test.ui.ProductAdapterHome;
 
 public class HomeFragment extends Fragment {
 
@@ -43,14 +41,14 @@ public class HomeFragment extends Fragment {
         listView = root.findViewById(R.id.listviewHome);
         DatabaseLoad db = new DatabaseLoad(getContext());
         db.populate();
-        com.example.test.ui.dashboard.CustomAdapter listAdapter = new com.example.test.ui.dashboard.CustomAdapter(db, getContext());
+        ProductAdapter listAdapter = new ProductAdapterHome(db, getContext());
         listView.setAdapter(listAdapter);
-
-
         homeViewModel.getRationNumber().observe(getViewLifecycleOwner(), rationNumber -> {
             textView_stage.setText(rationNumber.toString() + "/4");
-
+            Toast toast = Toast.makeText(getContext(), "Page changed", Toast.LENGTH_SHORT);
+            toast.show();
         });
+
         textView_stats = root.findViewById(R.id.text_stats);
         textView_stage = root.findViewById(R.id.text_stage);
         buttonBack = root.findViewById(R.id.buttonBackHome);
@@ -58,7 +56,7 @@ public class HomeFragment extends Fragment {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int curValue =homeViewModel.getRationNumber().getValue();
+                int curValue = homeViewModel.getRationNumber().getValue();
                 if (homeViewModel.getRationNumber().getValue() > 1)
                     homeViewModel.getRationNumber().setValue(curValue - 1);
             }
@@ -66,7 +64,7 @@ public class HomeFragment extends Fragment {
         buttonForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int curValue =homeViewModel.getRationNumber().getValue();
+                int curValue = homeViewModel.getRationNumber().getValue();
                 if (homeViewModel.getRationNumber().getValue() < 4)
                     homeViewModel.getRationNumber().setValue(curValue + 1);
             }
@@ -85,35 +83,4 @@ public class HomeFragment extends Fragment {
     }
 
 
-
-    public class CustomAdapter extends BaseAdapter {
-        List<String> items;
-
-        public CustomAdapter(List<String> items) {
-            super();
-            this.items = items;
-        }
-
-        @Override
-        public int getCount() {
-            return items.size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return items.get(i);
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return items.get(i).hashCode();
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            TextView textView = new TextView(getContext());
-            textView.setText(items.get(i));
-            return textView;
-        }
-    }
 }

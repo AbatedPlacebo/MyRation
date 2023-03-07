@@ -9,7 +9,7 @@ import java.util.List;
 
 @Dao
 public interface ProductDao {
-    @Query("SELECT * FROM catalog")
+    @Query("SELECT * FROM catalog LIMIT 10")
     List<Catalog> getAll();
 
     @Query("SELECT * FROM catalog WHERE id IN (:productIds)")
