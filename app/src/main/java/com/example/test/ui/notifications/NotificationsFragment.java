@@ -40,7 +40,7 @@ public class NotificationsFragment extends Fragment {
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        user = new User(0,0,0,0,0,0);
+        user = new User(0,0,0,0,0,0,0);
         button_save = root.findViewById(R.id.button_save);
         button_save.setOnClickListener(new View.OnClickListener() { // сохраняем данные
             @Override
