@@ -22,6 +22,8 @@ public class Catalog {
     public String productName;
     @ColumnInfo(name = "category")
     public Integer productCategory;
+    @ColumnInfo(name = "price")
+    public Integer productPrice;
     @ColumnInfo(name = "mass")
     public Float productMass;
     @ColumnInfo(name = "volume")

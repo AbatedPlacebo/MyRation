@@ -40,7 +40,7 @@ public class NotificationsFragment extends Fragment {
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        user = new User(0,0,0,0,0,0,new String[]{"a","b"});
+        user = new User(0,0,0,0,0,0);
         button_save = root.findViewById(R.id.button_save);
         button_save.setOnClickListener(new View.OnClickListener() { // сохраняем данные
             @Override
@@ -51,6 +51,7 @@ public class NotificationsFragment extends Fragment {
                 user.setHeight(Float.parseFloat(String.valueOf(text_height.getText())));
                 user.setWeight(Float.parseFloat(String.valueOf(text_weight.getText())));
                 user.setActivity(spinner_activity.getSelectedItemPosition());
+                user.setPFCC();
                 boolean result = JSONHelper.exportToJSON(getContext(), user);
                 if(result){
                     Toast.makeText(getContext(), "Данные сохранены", Toast.LENGTH_LONG).show();
