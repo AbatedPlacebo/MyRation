@@ -147,7 +147,7 @@ public class HomeFragment extends Fragment {
                 user.getCurrentFats(),
                 user.getCurrentCarbs()));
 
-        listView = root.findViewById(R.id.listview_products);
+        listView = root.findViewById(R.id.listviewHome);
 
         textView_stats = root.findViewById(R.id.text_stats);
         textView_stage = root.findViewById(R.id.text_stage);
