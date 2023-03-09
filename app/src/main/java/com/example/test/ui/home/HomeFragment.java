@@ -107,7 +107,6 @@ public class HomeFragment extends Fragment {
         }
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         listView = root.findViewById(R.id.listviewHome);
         DatabaseLoad db = new DatabaseLoad(getContext());
         db.populate();
@@ -147,7 +146,9 @@ public class HomeFragment extends Fragment {
                 user.getCurrentFats(),
                 user.getCurrentCarbs()));
 
+
         listView = root.findViewById(R.id.listviewHome);
+
 
         textView_stats = root.findViewById(R.id.text_stats);
         textView_stage = root.findViewById(R.id.text_stage);
@@ -162,5 +163,6 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 
 }

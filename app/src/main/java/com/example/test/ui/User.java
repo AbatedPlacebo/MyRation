@@ -19,9 +19,9 @@ public class User {
 
     private double[] activityValues = new double[]{1.2, 1.37, 1.55, 1.7, 1.9};
     private double[][] PFCC = new double[4][4];
+
 	private float budget; // 0 - не вводил, 1 - вводил
 
-    
 
     public User(int target, int male, int age, float height, float weight, int activity, float budget) {
         this.target = target;
@@ -29,7 +29,7 @@ public class User {
         this.age = age;
         this.height = height;
         this.weight = weight;
-		this.budget = budget;
+        this.budget = budget;
     }
 
     public void setPFCC(){
@@ -70,7 +70,6 @@ public class User {
             calories = calories + x;
         }
         return calories;
-        
     }
 
     public boolean isHasbudget() {
