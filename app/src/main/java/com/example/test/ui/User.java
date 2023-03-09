@@ -8,6 +8,7 @@ public class User {
     private double weight;
     private int calories;
     private int activity; // 0 - минимальная, 1 - низкая, 2 - средняя, 3 - высокая, 4 - очень высокая
+
     private double proteins;
     private double fats;
     private double carbs;
@@ -18,13 +19,17 @@ public class User {
 
     private double[] activityValues = new double[]{1.2, 1.37, 1.55, 1.7, 1.9};
     private double[][] PFCC = new double[4][4];
-    public User(int target, int male, int age, float height, float weight,
-                int activity) {
+	private float budget; // 0 - не вводил, 1 - вводил
+
+    
+
+    public User(int target, int male, int age, float height, float weight, int activity, float budget) {
         this.target = target;
         this.male = male;
         this.age = age;
         this.height = height;
         this.weight = weight;
+		this.budget = budget;
     }
 
     public void setPFCC(){
@@ -65,6 +70,16 @@ public class User {
             calories = calories + x;
         }
         return calories;
+        
+    }
+
+    public boolean isHasbudget() {
+        return budget > 100;
+    }
+
+    public void setbudget(float budget) {
+        this.budget = budget;
+
     }
 
     public int getActivity() {

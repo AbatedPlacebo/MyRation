@@ -184,7 +184,8 @@ public class MainActivity extends AppCompatActivity {
 
             button_next = findViewById(R.id.button_next);
 
-            user = new User(0,0,0,0,0,0);
+            user = new User(0,0,0,0,0,0,0);
+
             button_next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -291,6 +292,13 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //user.set() текущие белки, жиры, углеводы, калории
+        JSONHelper.exportToJSON(getApplicationContext(), user);
     }
 
     protected boolean CheckEditTexts(){
